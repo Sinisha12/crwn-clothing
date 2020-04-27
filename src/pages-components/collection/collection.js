@@ -23,8 +23,7 @@ const CollectionPage = ({ match, collection }) =>{
 	)
 }
 
-const mapStateToProps = (state, ownProps) => {
-	console.log(ownProps.match)
+const mapStateToProps = (state, ownProps) => {	
 	return({
 	collection: selectCollection(ownProps.match.params.collectionId)(state)
 })}
