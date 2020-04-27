@@ -15,10 +15,11 @@ import { selectCurrentUser } from './redux/user/user-selector'
 
 
 
+
 class  App extends React.Component  {
 	unsubscribeFromAuth = null
 	componentDidMount() {
-		const { setCurrentUser } = this.props;
+		const { setCurrentUser} = this.props;
 
 
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -33,31 +34,30 @@ class  App extends React.Component  {
         	});
       	}
     	setCurrentUser(userAuth);
+    	
     });
-}
-
-
+	}
 	componentWillUnmount() {
 		this.unsubscribeFromAuth();
 	}
-	render () {  
+	render () {		
 		return (
-			  	<div>
-			  		<Header />
-			  		<Switch>
-			  			<Route exact path='/' component={HomePage}/>
-			  			<Route path='/shop/' component={ShopPage}/>
-			  			<Route path='/checkout' component={CheckoutPage} />
-			  			<Route exact path='/sign-in/' render={() =>
-			  			this.props.currentUser ? (<Redirect to='/' />) : (<SignInSignOut />)}/>
-			  		</Switch>
-			  	</div>
-    			);
-			}
+			<div>
+				<Header />
+			  	<Switch>
+			  		<Route exact path='/' component={HomePage}/>
+			  		<Route path='/shop/' component={ShopPage}/>
+			  		<Route path='/checkout' component={CheckoutPage} />
+			  		<Route exact path='/sign-in/' render={() =>
+			  		this.props.currentUser ? (<Redirect to='/' />) : (<SignInSignOut />)}/>
+			  	</Switch>
+			</div>
+    	);
+	}
 }
 
 const mapStateToProps = createStructuredSelector({
-	currentUser: selectCurrentUser
+	currentUser: selectCurrentUser	
 })
 
 
@@ -66,3 +66,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
