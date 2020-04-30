@@ -4,7 +4,7 @@ import {HomePageContainer} from'./homepage_styles.js'
 
 const HomePage = () => (
 	<HomePageContainer>
-		<Directory />		
+		<Directory />	
 	</HomePageContainer>		
 	)
 
